@@ -5,7 +5,7 @@ export function createCaseBoard(data,language='ru'){
  const isShowcase=Boolean(data.kind),labels=data.kind==='presentation'?['Презентация','Presentation']:data.kind==='logo'?['Логотип','Logo']:['Фирменный стиль','Visual identity'];
  board.setAttribute('aria-label',(index?'Portfolio case: ':'Кейс портфолио: ')+name);
  if(isShowcase){board.classList.add('case-board--showcase','case-board--'+data.kind);}
- if(data.preformatted){const img=document.createElement('img');img.src='assets/'+data.source;img.alt=name+' — '+(index?'complete supplied case board':'полный присланный кейс');img.width=data.width;img.height=data.height;img.decoding='async';board.classList.add('case-board--supplied');board.append(img);return board;}
+ if(data.preformatted){const img=document.createElement('img');img.src='/harlampiy-studio/assets/'+data.source;img.alt=name+' — '+(index?'complete supplied case board':'полный присланный кейс');img.width=data.width;img.height=data.height;img.decoding='async';board.classList.add('case-board--supplied');board.append(img);return board;}
  const palette=data.palette||{};
  for(const key of ['base','start','end','ink'])if(/^#[0-9a-f]{6}$/i.test(palette[key]||''))board.style.setProperty('--board-'+key,palette[key]);
  const corner=document.createElement('div');corner.className='case-board-corner';
@@ -20,13 +20,13 @@ export function createCaseBoard(data,language='ru'){
  const kind=document.createElement('p');kind.className='case-board-kind';kind.textContent=data.type[index];header.append(title,nameLine,kind);
  if(isShowcase){
   const artwork=document.createElement('div');artwork.className='case-board-artwork';
-  const img=document.createElement('img');img.src='assets/'+data.source;img.alt=name+' — '+(data.reconstructed?(index?'reconstructed straight slide grid':'восстановленная ровная сетка слайдов'):(index?'complete supplied artwork':'полный присланный макет'));img.width=data.width;img.height=data.height;img.decoding='async';
+  const img=document.createElement('img');img.src='/harlampiy-studio/assets/'+data.source;img.alt=name+' — '+(data.reconstructed?(index?'reconstructed straight slide grid':'восстановленная ровная сетка слайдов'):(index?'complete supplied artwork':'полный присланный макет'));img.width=data.width;img.height=data.height;img.decoding='async';
   artwork.append(img);board.append(corner,header,artwork);return board;
  }
  const columns=document.createElement('div');columns.className='case-board-columns';columns.style.setProperty('--column-first',(data.height-data.split)+'fr');columns.style.setProperty('--column-second',data.split+'fr');
  for(const [part,start,height]of [[1,0,data.split],[2,data.split,data.height-data.split]]){
   const frame=document.createElement('div');frame.className='case-board-column';frame.dataset.part=String(part);frame.style.aspectRatio=data.width+'/'+height;
-  const img=document.createElement('img');img.src='assets/'+data.source;img.alt=name+' — '+(index?'part ':'часть ')+part;img.width=data.width;img.height=data.height;img.decoding='async';
+  const img=document.createElement('img');img.src='/harlampiy-studio/assets/'+data.source;img.alt=name+' — '+(index?'part ':'часть ')+part;img.width=data.width;img.height=data.height;img.decoding='async';
   if(start)img.style.transform='translateY(-'+(start/data.height*100)+'%)';
   frame.append(img);columns.append(frame);
  }

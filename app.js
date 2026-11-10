@@ -76,7 +76,7 @@ for(const item of [...websiteLibrary,...presentationLibrary]){
  const card=grid.querySelector('[data-case="'+item.id+'"]')?.closest('.work-item')||cardTemplate.cloneNode(true),button=card.querySelector('[data-case]'),img=card.querySelector('img'),caption=card.querySelector('.work-meta>span');
  if(item.category==='presentation'){card.dataset.category='presentation';button.className='work-image case-stage case-stage--presentation';img.width=item.width;img.height=item.height;}
  card.hidden=true;button.dataset.case=item.id;button.dataset.i18nAria='open_'+item.id;button.setAttribute('aria-label','Открыть '+item.title[0]);
- img.removeAttribute('src');img.dataset.src=item.preview?'assets/'+item.preview:'assets/portfolio/'+item.id+'-preview.webp';img.dataset.i18nAlt='alt_'+item.id;img.alt=item.title[0]+' — '+item.type[0];
+ img.removeAttribute('src');img.dataset.src=item.preview?'/harlampiy-studio/assets/'+item.preview:'/harlampiy-studio/assets/portfolio/'+item.id+'-preview.webp';img.dataset.i18nAlt='alt_'+item.id;img.alt=item.title[0]+' — '+item.type[0];
  card.querySelector('h3').textContent=item.title[0];card.querySelector('h3').dataset.libraryTitle=item.id;caption.dataset.i18n='type_'+item.id;caption.textContent=item.type[0];
  translations.en['open_'+item.id]='Open '+item.title[1];translations.en['alt_'+item.id]=item.title[1]+' — '+item.type[1];translations.en['type_'+item.id]=item.type[1];
  newCards.set(item.id,card);
@@ -86,7 +86,7 @@ const orderedIds=['site-ilearn','site-002','site-003','site-001','logo-04','orig
 // Lead with the freshly framed cases; phone batches are shorter than desktop batches.
 const allCards=new Map([...newCards,...originalCards]);
 for(const id of [...orderedIds,...newCards.keys(),...originalCards.keys()].filter((id,index,list)=>list.indexOf(id)===index))grid.append(allCards.get(id));
-for(const [id,card]of allCards){const board=allCaseBoards[id];if(board?.poster){const img=card.querySelector('img');img.removeAttribute('src');img.dataset.src='assets/'+board.poster;const cover=card.querySelector('.work-image');cover.classList.add('has-case-poster');if(Number.isFinite(board.posterWidth)&&board.posterWidth>0&&Number.isFinite(board.posterHeight)&&board.posterHeight>0)cover.style.setProperty('--work-cover-ratio',board.posterWidth+'/'+board.posterHeight);}}
+for(const [id,card]of allCards){const board=allCaseBoards[id];if(board?.poster){const img=card.querySelector('img');img.removeAttribute('src');img.dataset.src='/harlampiy-studio/assets/'+board.poster;const cover=card.querySelector('.work-image');cover.classList.add('has-case-poster');if(Number.isFinite(board.posterWidth)&&board.posterWidth>0&&Number.isFinite(board.posterHeight)&&board.posterHeight>0)cover.style.setProperty('--work-cover-ratio',board.posterWidth+'/'+board.posterHeight);}}
 const lessWorkButton=document.createElement('button');lessWorkButton.type='button';lessWorkButton.id='work-less';lessWorkButton.className='button button-outline';lessWorkButton.hidden=true;lessWorkButton.setAttribute('aria-controls','work-grid');lessWorkButton.textContent='Свернуть подборку';
 document.getElementById('work-more').after(lessWorkButton);
 const textNodes=[...document.querySelectorAll('[data-i18n]')];
@@ -335,9 +335,9 @@ function fillCase(id){
  if(board){
   img.removeAttribute('src');const canvas=document.createElement('div');canvas.className='case-board-canvas';canvas.append(createCaseBoard(board,language));boardViewport.append(canvas);
   for(const asset of canvas.querySelectorAll('img'))asset.addEventListener('load',queueCaseFit,{once:true});
-  sourceDownload.href='assets/'+board.source;sourceDownload.download=id+(board.reconstructed?'-reconstructed.webp':'-source-resolution.webp');sourceDownload.textContent=language==='ru'?(board.reconstructed?'Скачать раскладку':'Скачать макет'):'Download artwork';
+  sourceDownload.href='/harlampiy-studio/assets/'+board.source;sourceDownload.download=id+(board.reconstructed?'-reconstructed.webp':'-source-resolution.webp');sourceDownload.textContent=language==='ru'?(board.reconstructed?'Скачать раскладку':'Скачать макет'):'Download artwork';
   boardViewport.setAttribute('aria-label',language==='ru'?'Кейс целиком. Для просмотра деталей нажмите «Увеличить макет».':'Complete case. Choose Enlarge layout to inspect details.');updateZoomLabel();queueCaseFit();
- }else{img.src='assets/'+c.image;img.alt=langValue(c.title);}
+ }else{img.src='/harlampiy-studio/assets/'+c.image;img.alt=langValue(c.title);}
 }
 for(const el of document.querySelectorAll('[data-case]'))el.addEventListener('click',()=>{currentCase=el.dataset.case;caseContext.open=innerWidth>760&&innerHeight>600;fillCase(currentCase);const image=document.getElementById('case-image'),width=cases[currentCase].width;image.style.maxWidth=Number.isFinite(width)?width+'px':'';image.style.marginInline='auto';dialog.showModal();dialog.scrollTop=0;boardViewport.scrollTop=0;boardViewport.scrollLeft=0;document.body.classList.add('dialog-open');fitCaseView();});
 document.getElementById('dialog-close').addEventListener('click',()=>dialog.close());
