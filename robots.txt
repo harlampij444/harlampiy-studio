@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://harlampij444.github.io/harlampiy-studio/sitemap.xml

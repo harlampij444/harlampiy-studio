@@ -1,0 +1,72 @@
+/* A portfolio artifact, not a replacement for the site's silver/lemon identity. */
+@font-face{font-family:'Great Vibes';src:url('assets/fonts/GreatVibes-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+.case-board{--board-base:#e7e7e5;--board-start:#c7c7c3;--board-end:#f4f4f2;--board-ink:#1c1d1b;container-type:inline-size;box-sizing:border-box;width:100%;padding:2.2% 5.2% 6.5%;color:var(--board-ink);background:radial-gradient(ellipse at 0 15%,var(--board-start) 0,transparent 68%),radial-gradient(ellipse at 100% 95%,var(--board-end) 0,transparent 72%),var(--board-base)}
+.case-board-corner{display:flex;gap:clamp(5px,.7cqw,12px);margin-left:-2.6%;align-items:center}.case-board-corner>span{border:1px solid currentColor;border-radius:100px;padding:.55em .85em;font:300 clamp(9px,1.15cqw,18px)/1 Onest,sans-serif;white-space:nowrap}
+.case-board-header{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2.3% 0 6%;gap:0}.case-board-title{display:flex;align-items:baseline;justify-content:center;font:300 clamp(40px,10cqw,160px)/.9 Onest,sans-serif;letter-spacing:-.04em;margin:0;padding-top:.25em}.case-board-initial{display:inline-block;font:400 1.7em/.66 'Great Vibes',cursive;letter-spacing:0;margin-right:-.14em}.case-board-name{font:300 clamp(15px,3cqw,42px)/1.12 Onest,sans-serif;margin:2.8% 0 0;max-width:90%;text-wrap:balance}.case-board-kind{font:300 clamp(12px,1.8cqw,23px)/1.4 Onest,sans-serif;max-width:75%;margin:1.4% 0 0}
+.case-board-columns{display:grid;grid-template-columns:minmax(0,var(--column-first)) minmax(0,var(--column-second));gap:4.5%;align-items:start}.case-board-column{min-width:0;position:relative;overflow:hidden;border-radius:clamp(8px,1cqw,16px);background:#fff}.case-board-column>img{display:block;width:100%;height:auto;max-width:none;transform-origin:top left}.case-board--supplied{padding:0;background:none}.case-board--supplied>img{display:block;width:100%;height:auto}
+.case-board--showcase{aspect-ratio:4/5;display:flex;flex-direction:column;padding:2.4% 0 0}
+.case-board--showcase .case-board-corner{flex:none;width:94.2%;margin-inline:auto}
+.case-board--showcase .case-board-header{flex:1;width:89%;margin-inline:auto;padding:6% 0 7%;min-height:0}
+.case-board--showcase .case-board-title{font-size:clamp(22px,8.4cqw,136px);line-height:1.05;letter-spacing:-.035em;white-space:nowrap}
+.case-board--identity .case-board-title{font-size:clamp(20px,7cqw,112px)}
+.case-board--logo .case-board-title{font-size:clamp(28px,10cqw,160px)}
+.case-board--showcase .case-board-initial{margin-right:-.07em}
+.case-board--showcase .case-board-name{font-size:clamp(17px,3.5cqw,52px);margin-top:4%}
+.case-board--showcase .case-board-kind{font-size:clamp(11px,1.6cqw,24px)}
+.case-board-artwork{flex:none;width:100%;border-radius:0;overflow:hidden}
+.case-board-artwork>img{display:block;width:100%;height:auto;max-width:none}
+.case-stage--presentation.has-case-poster,.case-stage--logo.has-case-poster{border:0;background:transparent}
+.case-stage--presentation.has-case-poster>img,.case-stage--logo.has-case-poster>img{border-radius:0;object-fit:contain}
+.case-stage--presentation.has-case-poster:hover>img,.case-stage--logo.has-case-poster:hover>img{transform:none}
+.case-board-viewport{width:100%;overflow:hidden}.case-board-viewport[hidden],.case-tools[hidden],#case-image[hidden]{display:none}.case-board-viewport.is-zoomed{overflow:auto;max-height:75dvh;overscroll-behavior:contain;scrollbar-color:#65783c #edf0df}.case-board-viewport.is-zoomed>.case-board{min-width:1600px}.case-board-viewport:focus-visible{outline:3px solid var(--focus);outline-offset:-4px}.case-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.case-tools .button{font-size:12px;min-height:44px}.case-dialog.has-case-board{width:min(1200px,calc(100vw - 30px))}.has-case-board .case-detail h2{padding-right:48px}.has-case-board .case-detail{padding-bottom:26px}
+.work-grid.is-website .case-stage--website{aspect-ratio:4/5;padding:0;background:#f0f0ee;border:0}.work-grid.is-website .case-stage--website>img{border-radius:0}.work-grid.is-website .work-meta h3{font-size:24px}.case-stage--website.has-case-poster{padding:0;border:0;background:#f0f0ee}.case-stage--website.has-case-poster>img{border-radius:0;object-fit:contain}.case-stage--website.has-case-poster:hover>img{transform:none}
+@media(max-width:650px){.case-dialog.has-case-board{width:calc(100vw - 16px)}.case-tools{gap:8px}.case-tools .button{font-size:12px;padding:10px 13px}.work-grid.is-website .work-meta h3{font-size:22px}}
+
+/* Compact artifact wall: small covers for browsing, unchanged full cases on open. */
+.work-section .section-heading{margin-bottom:26px}
+.work-toolbar{margin:22px 0 24px;gap:16px;align-items:center}
+.work-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 18px}
+.work-grid .work-item{margin:0;min-width:0}
+.work-grid .work-image.case-stage{aspect-ratio:3/2;padding:12px;border-radius:12px}
+.work-grid .work-image.case-stage.has-case-poster{aspect-ratio:var(--work-cover-ratio,4/5);padding:0}
+.work-grid.is-wall{grid-auto-rows:8px;row-gap:0;grid-auto-flow:row}
+.work-grid.is-wall .work-item{padding-bottom:28px}
+.work-grid .work-meta{display:block;margin-top:11px}
+.work-grid .work-meta h3,.work-grid.is-website .work-meta h3{font-size:18px;line-height:1.2;letter-spacing:-.02em}
+.work-grid .work-meta>span{display:block;font-size:12px;line-height:1.45;text-align:left;max-width:none;margin-top:5px}
+.work-grid .case-stage .image-open{width:32px;height:32px;right:10px;bottom:10px}
+.work-grid .case-stage .image-open>svg{width:17px;height:17px}
+.portfolio-more{margin-top:30px;gap:10px}
+.work-count{font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(max-width:1100px) and (min-width:761px){.work-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px}.work-grid.is-wall .work-item{padding-bottom:24px}.work-grid .work-meta h3,.work-grid.is-website .work-meta h3{font-size:16px}.work-toolbar{gap:12px;margin:20px 0}.work-grid .work-meta>span{font-size:12px}.work-grid .work-image.case-stage{padding:9px}.work-count{font-size:12px}}
+@media(max-width:400px){.work-grid{gap:22px 12px}.work-grid.is-wall .work-item{padding-bottom:22px}.work-grid .work-meta h3,.work-grid.is-website .work-meta h3{font-size:14px}.work-grid .work-meta>span{font-size:11px}.work-grid .case-stage .image-open{width:28px;height:28px;right:7px;bottom:7px}.work-grid .case-stage .image-open>svg{width:15px;height:15px}}
+
+/* Fit the actual artwork first; scrolling is an explicit zoom action, not the entry view. */
+.case-dialog.has-case-board[open]{display:grid;grid-template-columns:minmax(0,1fr) var(--case-side-width,280px);grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"art info" "art tools";max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);overflow:hidden;position:fixed;border-radius:16px}
+.case-dialog.has-case-board .dialog-close{position:absolute;top:10px;right:10px;margin:0;float:none;z-index:4}
+.case-dialog.has-case-board .case-detail{grid-area:info;align-self:start;min-height:0;max-height:100%;overflow:auto;padding:30px 22px 16px}
+.case-dialog.has-case-board .case-detail h2{font-size:28px;line-height:1.1;margin:0 0 12px;padding-right:32px;overflow-wrap:anywhere}
+.case-dialog.has-case-board .case-type{font-size:12px;line-height:1.5;margin-bottom:16px}
+.case-context summary{cursor:pointer;font-size:13px;min-height:44px;display:list-item;padding:12px 0;text-underline-offset:4px}
+.case-context p{font-size:14px;line-height:1.6;margin:0;padding:4px 0 8px}
+.case-dialog.has-case-board>.case-tools{grid-area:tools;align-self:end;display:grid;gap:8px;margin:0;padding:8px 22px 22px}
+.case-dialog.has-case-board .case-tools .button{min-height:44px;font-size:12px;padding:10px 12px;text-align:center;justify-content:center}
+.case-dialog.has-case-board .case-tools #case-contact{font-size:12px}
+.case-dialog.has-case-board .case-board-viewport{grid-area:art;min-width:0;min-height:0;width:100%;height:100%;max-height:none;padding:16px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--grey)}
+.case-board-canvas{position:relative;flex:none}
+.case-board-canvas>.case-board{position:absolute;inset:0 auto auto 0;width:1200px;max-width:none;transform-origin:top left}
+.case-board-canvas>.case-board--showcase{aspect-ratio:auto}
+.case-board-canvas>.case-board--showcase .case-board-header{flex:none;padding:3% 0 4%}
+.case-board-canvas>.case-board--showcase .case-board-title{font-size:clamp(22px,7.5cqw,110px)}
+.case-board-canvas>.case-board--showcase .case-board-name{margin-top:2%;font-size:clamp(17px,2.6cqw,36px)}
+.case-board-canvas>.case-board--showcase .case-board-kind{font-size:clamp(11px,1.3cqw,18px)}
+.case-dialog.has-case-board .case-board-viewport.is-zoomed{display:block;overflow:auto;overscroll-behavior:contain;touch-action:pan-x pan-y}
+.case-dialog.has-case-board.is-stacked{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:"info" "art" "tools"}
+.case-dialog.has-case-board.is-stacked .case-detail{padding:18px 20px 4px;max-height:30dvh}
+.case-dialog.has-case-board.is-stacked .case-detail h2{font-size:24px;line-height:1.15;margin-bottom:4px;padding-right:44px}
+.case-dialog.has-case-board.is-stacked .case-type{margin:0}
+.case-dialog.has-case-board.is-stacked .case-context summary{font-size:12px;padding:10px 0}
+.case-dialog.has-case-board.is-stacked>.case-tools{grid-template-columns:1fr 1fr;padding:8px 16px 16px}
+.case-dialog.has-case-board.is-stacked #case-contact{grid-column:1/-1}
+@media(max-height:600px){.case-dialog.has-case-board .case-detail{padding:18px 18px 0}.case-dialog.has-case-board .case-detail h2{font-size:22px}.case-dialog.has-case-board>.case-tools{padding:8px 18px 14px}}
